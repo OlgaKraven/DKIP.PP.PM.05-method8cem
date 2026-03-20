@@ -1,0 +1,26 @@
+:root > * {
+  --md-primary-fg-color:        #f3f2f0;
+  --md-primary-fg-color--light: #B3C7E8;
+  --md-primary-fg-color--dark:  #1A237E;
+}
+.md-header__topic {
+  color: #333;
+}
+.md-typeset .mermaid {
+  transition: transform 0.25s ease;
+  transform-origin: center center;
+  cursor: zoom-in;
+}
+.md-typeset .mermaid:hover {
+  transform: scale(2.5);
+  background-color: #fafafa;
+  z-index: 10;
+}
+.md-typeset blockquote {
+    border-left: 0.3rem solid;
+    border-left-color: #1565C0;
+    background-color: #fafafa;
+    padding: 0.6rem 1rem;
+    margin: 1rem 0;
+    color: #333;
+}
