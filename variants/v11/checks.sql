@@ -1,0 +1,1 @@
+SELECT id,name,material_cost,operation_cost FROM v_product_cost ORDER BY id;

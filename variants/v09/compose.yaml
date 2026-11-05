@@ -1,0 +1,15 @@
+name: pp05-v09
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: Practice05-local
+    ports: ["127.0.0.1:33405:3306"]
+    volumes: ["db:/var/lib/mysql"]
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-pPractice05-local"]
+      interval: 3s
+      timeout: 3s
+      retries: 40
+volumes:
+  db:
