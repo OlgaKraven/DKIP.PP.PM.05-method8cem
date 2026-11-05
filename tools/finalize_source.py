@@ -21,15 +21,16 @@ config=config[:start]+'''  - Выполнение: practice/stage1.md
       - CRUD и соединения: examples/helpdesk4.md
 '''+config[end:]
 (ROOT/'mkdocs.yml').write_text(config,encoding='utf-8')
-# Replace only the cramped title on slide 4, leaving its full title in the contents intact.
+# Keep the exact heading used by EatDoners to locate the figure section.
 from zipfile import ZipFile,ZIP_DEFLATED
 from lxml import etree
 src=ROOT/'forms/source/приложение1.pptx';out=ROOT/'forms/Приложение к отчету.pptx'
 with ZipFile(src) as z:parts={n:z.read(n) for n in z.namelist()}
 key='ppt/slides/slide4.xml';e=etree.fromstring(parts[key]);ns={'a':'http://schemas.openxmlformats.org/drawingml/2006/main'}
-nodes=e.xpath('//a:t[text()="Экспериментально-практическая работа"]',namespaces=ns);assert len(nodes)==1;nodes[0].text='Практическая работа'
+nodes=e.xpath('//a:t[text()="Экспериментально-практическая работа"]',namespaces=ns);assert len(nodes)==1
+run=nodes[0].getparent();rpr=run.find('{'+ns['a']+'}rPr');assert rpr is not None;rpr.set('sz','2800')
 parts[key]=etree.tostring(e,xml_declaration=True,encoding='UTF-8',standalone=True)
 with ZipFile(out,'w',ZIP_DEFLATED) as z:
  for n,data in parts.items():z.writestr(n,data)
 with ZipFile(ROOT/'output/templates-update.zip','w',ZIP_DEFLATED) as z:z.write(out,'Приложение к отчету.pptx')
-print('Updated current entries; preserved optional Helpdesk, original production forms and corrected one slide title')
+print('Updated current entries; preserved optional Helpdesk, production forms and the exact figure heading with readable size')
