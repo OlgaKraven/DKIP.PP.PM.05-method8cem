@@ -1,0 +1,9 @@
+output/
+demo/bin/
+demo/obj/
+variants/**/bin/
+variants/**/obj/
+**/tests/bin/
+**/tests/obj/
+.playwright-cli/
+__pycache__/

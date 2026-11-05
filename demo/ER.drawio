@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net">
+  <diagram name="Заказы">
+    <mxGraphModel dx="1000" dy="1200" page="1" pageScale="1" pageWidth="827" pageHeight="1169">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="customers" value="customers&#10;id VARCHAR(32) PK&#10;name VARCHAR(200)&#10;inn VARCHAR(32)&#10;address VARCHAR(300)&#10;phone VARCHAR(80)&#10;kind VARCHAR(80)" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=13;fillColor=#ffffff;strokeColor=#1c1c1c;" vertex="1" parent="1">
+          <mxGeometry x="40" y="60" width="310" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="orders" value="orders&#10;id INT AI PK&#10;customer_id VARCHAR(32)&#10;created_by INT&#10;status ENUM('Новый','В производстве','Завершён')&#10;created_at TIMESTAMP&#10;FK customer_id → customers.id&#10;FK created_by → users.id" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=13;fillColor=#ffffff;strokeColor=#1c1c1c;" vertex="1" parent="1">
+          <mxGeometry x="430" y="60" width="310" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="order_lines" value="order_lines&#10;order_id INT&#10;product_id INT&#10;quantity INT&#10;product_id)&#10;PK (order_id,product_id)&#10;FK order_id → orders.id&#10;FK product_id → products.id" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=13;fillColor=#ffffff;strokeColor=#1c1c1c;" vertex="1" parent="1">
+          <mxGeometry x="430" y="430" width="310" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="products" value="products&#10;id INT PK&#10;code VARCHAR(40)  UNIQUE&#10;name VARCHAR(200)" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=13;fillColor=#ffffff;strokeColor=#1c1c1c;" vertex="1" parent="1">
+          <mxGeometry x="40" y="430" width="310" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="production_orders" value="production_orders&#10;id INT AI PK&#10;order_id INT  UNIQUE&#10;launch_date DATE&#10;department VARCHAR(160)&#10;FK order_id → orders.id" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=13;fillColor=#ffffff;strokeColor=#1c1c1c;" vertex="1" parent="1">
+          <mxGeometry x="430" y="800" width="310" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="orders_customer_id" value="1 : N · customer_id" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=none;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.7;entryX=0;entryY=0.7;" edge="1" parent="1" source="customers" target="orders">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="order_lines_order_id" value="1 : N · order_id" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=none;fontSize=12;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="orders" target="order_lines">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="order_lines_product_id" value="1 : N · product_id" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=none;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.7;entryX=0;entryY=0.7;" edge="1" parent="1" source="products" target="order_lines">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="production_orders_order_id" value="1 : 0..1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=none;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.7;entryX=1;entryY=0.6;" edge="1" parent="1" source="orders" target="production_orders">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="775" y="235" />
+              <mxPoint x="775" y="950" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Спецификация">
+    <mxGraphModel dx="1000" dy="1200" page="1" pageScale="1" pageWidth="827" pageHeight="1169">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="products" value="products&#10;id INT PK&#10;code VARCHAR(40)  UNIQUE&#10;name VARCHAR(200)" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=13;fillColor=#ffffff;strokeColor=#1c1c1c;" vertex="1" parent="1">
+          <mxGeometry x="235" y="50" width="310" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="material_norms" value="material_norms&#10;product_id INT&#10;material_id INT&#10;norm DECIMAL(14,6)&#10;material_id)&#10;PK (product_id,material_id)&#10;FK product_id → products.id&#10;FK material_id → materials.id" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=13;fillColor=#ffffff;strokeColor=#1c1c1c;" vertex="1" parent="1">
+          <mxGeometry x="40" y="410" width="310" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="materials" value="materials&#10;id INT PK&#10;name VARCHAR(200)&#10;unit VARCHAR(30)&#10;price DECIMAL(14,4)" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=13;fillColor=#ffffff;strokeColor=#1c1c1c;" vertex="1" parent="1">
+          <mxGeometry x="40" y="800" width="310" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="operation_norms" value="operation_norms&#10;product_id INT&#10;operation_id INT&#10;hours DECIMAL(14,6)&#10;operation_id)&#10;PK (product_id,operation_id)&#10;FK product_id → products.id&#10;FK operation_id → operations.id" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=13;fillColor=#ffffff;strokeColor=#1c1c1c;" vertex="1" parent="1">
+          <mxGeometry x="430" y="410" width="310" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="operations" value="operations&#10;id INT PK&#10;name VARCHAR(200)&#10;rate_hour DECIMAL(14,4)" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=13;fillColor=#ffffff;strokeColor=#1c1c1c;" vertex="1" parent="1">
+          <mxGeometry x="430" y="800" width="310" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="material_norms_product_id" value="1 : N · product_id" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=none;fontSize=12;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="products" target="material_norms">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="material_norms_material_id" value="1 : N · material_id" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=none;fontSize=12;labelBackgroundColor=#ffffff;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" parent="1" source="materials" target="material_norms">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="operation_norms_product_id" value="1 : N · product_id" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=none;fontSize=12;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="products" target="operation_norms">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="operation_norms_operation_id" value="1 : N · operation_id" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=none;fontSize=12;labelBackgroundColor=#ffffff;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" parent="1" source="operations" target="operation_norms">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="Доступ и аудит">
+    <mxGraphModel dx="1000" dy="1200" page="1" pageScale="1" pageWidth="827" pageHeight="1169">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="users" value="users&#10;id INT AI PK&#10;login VARCHAR(64)  UNIQUE&#10;password_hash VARCHAR(300)&#10;full_name VARCHAR(160)&#10;role ENUM('Administrator','User')&#10;failed_attempts INT&#10;blocked BOOLEAN" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=13;fillColor=#ffffff;strokeColor=#1c1c1c;" vertex="1" parent="1">
+          <mxGeometry x="40" y="60" width="310" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="orders" value="orders&#10;id INT AI PK&#10;customer_id VARCHAR(32)&#10;created_by INT&#10;status ENUM('Новый','В производстве','Завершён')&#10;created_at TIMESTAMP&#10;FK customer_id → customers.id&#10;FK created_by → users.id" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=13;fillColor=#ffffff;strokeColor=#1c1c1c;" vertex="1" parent="1">
+          <mxGeometry x="430" y="60" width="310" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="order_audit" value="order_audit&#10;id INT AI PK&#10;order_id INT&#10;old_status VARCHAR(30)&#10;new_status VARCHAR(30)&#10;changed_at TIMESTAMP&#10;order_id: исторический код, без FK" style="rounded=0;whiteSpace=wrap;html=0;align=left;verticalAlign=top;spacing=12;fontFamily=Arial;fontSize=13;fillColor=#ffffff;strokeColor=#1c1c1c;" vertex="1" parent="1">
+          <mxGeometry x="40" y="450" width="310" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="orders_created_by" value="1 : N · created_by" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=none;fontSize=12;labelBackgroundColor=#ffffff;exitX=1;exitY=0.7;entryX=0;entryY=0.7;" edge="1" parent="1" source="users" target="orders">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

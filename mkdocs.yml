@@ -1,4 +1,4 @@
-site_name: ПП.ПМ.05 Соадминистрирование и автоматизация БД и серверов
+site_name: ПП ПМ.05 Проектирование и разработка информационных систем
 
 use_directory_urls: false
 
@@ -26,11 +26,12 @@ nav:
       - Этап 2. Объекты БД — VIEW, процедуры, триггеры: theory/stage2.md
       - Этап 3. Безопасность — роли СУБД и хэширование: theory/stage3.md
       - Этап 4. CRUD и запросы с JOIN: theory/stage4.md
-  - Практика:
-      - Этап 1. Проектирование базы данных: practice/stage1.md
-      - Этап 2. Объекты БД — VIEW, процедуры, триггеры: practice/stage2.md
-      - Этап 3. Безопасность — роли СУБД и хэширование: practice/stage3.md
-      - Этап 4. CRUD и запросы с JOIN: practice/stage4.md
+  - Выполнение: practice/stage1.md
+  - Дополнительные примеры Helpdesk:
+      - Модель: examples/helpdesk1.md
+      - Объекты БД: examples/helpdesk2.md
+      - Хеширование и роли: examples/helpdesk3.md
+      - CRUD и соединения: examples/helpdesk4.md
 
 markdown_extensions:
   - tables
