@@ -126,6 +126,10 @@ def pdf(root, target, data, section, release=False):
     specs=data['assignment']+data['guide'] if section=='assignment' else data['areas']
     label='Методические рекомендации' if section=='assignment' else 'Список предметных областей'
     story=[]
+    if section=='guide':
+        selection=data['assignment'][0]['blocks'][0]
+        story.extend([Banner('ПП ПМ.05',label,'guide-cover'),Spacer(1,18),card(1,selection)])
+        story.append(Paragraph('В закладках PDF открыть заголовок своего варианта. Если закладки не видны, найти «Вариант NN» через Ctrl+F, подставив свой номер.',body))
     for i,page in enumerate(specs,1):
         if story:story.append(PageBreak() if section=='guide' else Spacer(1,18))
         tag='ПП ПМ.05 · '+('Вариант '+str(i).zfill(2) if section=='guide' else label)
